@@ -3,7 +3,13 @@ require 'active_resource'
 class Story < ActiveResource::Base
 
   def self.yaml
-    YAML.load_file('slurper_config.yml')
+		begin
+   		YAML.load_file('slurper_config.yml')
+		rescue 
+			puts "You need to create a slurper_config.yml file so slurper knows how to connect to your project\n"
+			exit
+		end
+
   end
 
   def self.config
